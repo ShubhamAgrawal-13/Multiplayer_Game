@@ -4,7 +4,14 @@ import sys
 import pickle
 from player import Player
 
-server="192.168.1.5"
+def pack(data):
+	return pickle.dumps(data)
+
+def unpack(data):
+	return pickle.loads(data)
+
+
+server=""
 port=5555
 
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
@@ -18,50 +25,41 @@ except socket.error as e:
 s.listen(2)
 print("Listening .....")
 
-def read_pos(st):
-	st=st.split(",")
-	return int(st[0]),int(st[1])
 
-def make_pos(tup):
-	return str(tup[0])+","+str(tup[1])
-
-
-players = [Player(0,0,50,50,(255,0,0)), Player(100,100,50,50,(0,255,0))]
+players = []
 
 def handle_client(conn, player):
-	reply=""
-	conn.send(pickle.dumps(players[player]))
+	conn.send(pack(players[player]))
 	while(1):
 		try:
-			data = pickle.loads(conn.recv(2048))
+			data = unpack(conn.recv(2048))
 			players[player]=data 
 
 			if not data:
 				print("Disconnected")
 				break
-			else:
-				if(player == 1):
-					reply=players[0]
-				else:
-					reply=players[1]
-				print("Received : ",data)
-				print("Sending : ",reply)
 
-			conn.sendall(pickle.dumps(reply))
+			conn.sendall(pack(players))
 
 		except Exception as e:
 			print(e)
 			break
 	
 	print("Lost Connection")
+	# players.pop(player)
 	conn.close()
 
-currentPlayer = 0
 
+import random
+import numpy as np
+## Server loop
+currentPlayer = 0
 while(1):
 	conn, addr = s.accept()
 	print("Connected to ",addr)
-
+	xi = random.randint(15,335) 
+	yi = random.randint(15,335) 
+	color = tuple(np.random.choice(range(256), size=3))
+	players.append(Player(xi,yi,30,30,color))
 	start_new_thread(handle_client,(conn,currentPlayer))
 	currentPlayer+=1
-

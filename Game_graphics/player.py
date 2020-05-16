@@ -29,7 +29,5 @@ class Player(object):
 		if(keys[pygame.K_DOWN]):
 			self.y+=self.val
 
-		self.update()
-
-	def update(self):
 		self.rect = (self.x, self.y, self.width, self.height)
+		

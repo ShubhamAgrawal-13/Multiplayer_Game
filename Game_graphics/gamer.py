@@ -1,38 +1,34 @@
 import pygame
 from network import Network
 from player import Player
+from sys import argv
 
-width = 500
-height = 500
+width = 350
+height = 350
 
 win = pygame.display.set_mode((width,height))
-pygame.display.set_caption("Client")
 
-# clientNumber = 0
-
-# def read_pos(st):
-# 	st=st.split(",")
-# 	return int(st[0]),int(st[1])
-
-# def make_pos(tup):
-# 	return str(tup[0])+","+str(tup[1])
-
-
-def reDrawWindow(win, player,player2):
+def reDrawWindow(win, players):
 	win.fill((255,255,255))
-	player.draw(win)
-	player2.draw(win)
+	for i in players:
+		i.draw(win)
 	pygame.display.update()
+
 
 
 def main():
 	run = True
-	n= Network()
-	p = n.getP()
+	port=5555
+
+	n= Network(port)
+	p = n.getPlayer()
+
 	clock = pygame.time.Clock()
+
 	while(run):
 		clock.tick(60)
-		p2 = n.send(p)
+		players = n.send(p)
+
 		for event in pygame.event.get():
 			if(event.type == pygame.QUIT):
 				run = False
@@ -40,7 +36,10 @@ def main():
 
 
 		p.move()
-		reDrawWindow(win,p,p2)	
+		reDrawWindow(win,players)	
+
+
 
 if __name__ == '__main__':
+	pygame.display.set_caption(str(argv[1]))
 	main()
