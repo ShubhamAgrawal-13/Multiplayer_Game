@@ -1,6 +1,6 @@
 # Multiplayer_Game
 
-1. Message Based
+## 1. Message Based
       
       a) Multiplayer game that has a server component and 4 players(client component)
       
@@ -16,7 +16,8 @@
          in the current game after get request made by the player.
          
 
-2. Graphic Based
+## 2. Graphic Based
+
    For this, I have taken the help of Tim (youtube channel tech with tim). I learned a lot from his game tutorial. 
    
 ![Game gif](Game_graphics/my_game.gif)
