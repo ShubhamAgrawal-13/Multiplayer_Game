@@ -5,4 +5,4 @@
 2. Graphic Based
    For this, I have taken the help of Tim (youtube channel tech with tim). I learned a lot from his game tutorial. 
    
-![Graphic_game/my_game.gif]
+![Game_graphics/my_game.gif]
