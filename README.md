@@ -18,6 +18,6 @@
 
 ## 2. Graphic Based
 
-   For this, I have taken the help of Tim (youtube channel tech with tim). I learned a lot from his game tutorial. 
+   For this, I have taken the help of Tim (youtube channel tech with tim) where I got to know  about pygame module in python and I've also learnt a lot from his game tutorial. 
    
 ![Game gif](Game_graphics/my_game.gif)
