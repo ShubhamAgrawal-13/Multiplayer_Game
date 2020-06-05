@@ -20,4 +20,9 @@
 
    For this, I have taken the help of Tim (youtube channel tech with tim) where I got to know  about pygame module in python and I've also learnt a lot from his game tutorial. 
    
+   Main Objective of this game is:
+   -------------------------------
+      1. Distributed
+      2. Multiple Players can join the game
+   
 ![Game gif](Game_graphics/my_game.gif)
